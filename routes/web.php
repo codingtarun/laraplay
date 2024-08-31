@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +23,22 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**
+ * Admin Panel Route list 
+ * Middleware & Route Group
+ */
+Route::middleware(['auth'])->group(function () {
+    /**
+     * User Routes
+     */
+    Route::resource('user', UserController::class);
+    /**
+     * Blog Routes
+     */
+    Route::resource('blog', BlogController::class);
+    /**
+     * Category Routes
+     */
+    Route::resource('category', CategoryController::class);
+});
