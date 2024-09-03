@@ -1,21 +1,18 @@
 <?php
 
-namespace App\View\Components\Button;
+namespace App\View\Components\common;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Options extends Component
+class Alert extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public $title,
-        public $url,
-        public $model
-    ) {
+    public function __construct()
+    {
         //
     }
 
@@ -24,6 +21,6 @@ class Options extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.button.options');
+        return view('components.common.alert');
     }
 }

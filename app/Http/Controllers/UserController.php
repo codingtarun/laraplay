@@ -38,7 +38,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.user.show', compact('user'));
     }
 
     /**
@@ -62,6 +63,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect(route('user.index'))->with('success', 'User ' . $user->name . ' moved to <a href="' . route('user.index') . '"> trash </a>.');
     }
 }

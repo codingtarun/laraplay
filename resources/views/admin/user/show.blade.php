@@ -19,28 +19,17 @@
                 </div>
                 <div class="card-body">
                     <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Options</th>
-                            </tr>
-                        </thead>
                         <tbody>
-                            @foreach($users as $user)
                             <tr>
-                                <th scope="row">{{$loop->iteration}}</th>
-                                <td><a href="{{route('user.show',$user->id)}}">{{$user->name}}</a></td>
-                                <td>{{$user->email}}</td>
-                                <td>
-                                    <x-button.options :model="$user" :title="$user->name" url="user" />
-                                </td>
+                                <th scope="col">Name</th>
+                                <td scope="col">{{$user->name}}</td>
                             </tr>
-                            @endforeach
+                            <tr>
+                                <th scope="col">Email</th>
+                                <td scope="col">{{$user->email}}</td>
+                            </tr>
                         </tbody>
                     </table>
-                    {{$users->links()}}
                 </div>
             </div>
             <!-- Add New Modal -->

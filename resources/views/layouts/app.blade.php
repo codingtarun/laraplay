@@ -5,6 +5,7 @@
 <body>
     <div id="app">
         <x-common.navbar />
+        <x-common.alert />
         <main class="py-4">
             @yield('content')
         </main>
