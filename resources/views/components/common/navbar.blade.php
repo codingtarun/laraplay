@@ -20,6 +20,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.index') }}">{{ __('User') }}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('rolePermissions') }}">{{ __('Role & Permisions') }}</a>
+                    </li>
                     @endguest
                 </ul>
 

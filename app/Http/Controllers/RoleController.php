@@ -62,4 +62,12 @@ class RoleController extends Controller
     {
         //
     }
+    /**
+     * Manage Roles & Permissiosn sync
+     */
+    public function rolesPermissions()
+    {
+        $roles = Role::all();
+        return view('admin.role.index', compact('roles'));
+    }
 }

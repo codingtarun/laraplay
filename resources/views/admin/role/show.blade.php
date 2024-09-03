@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <span>
-                            {{ __('Blog') }}
+                            {{ __('Users') }}
                         </span>
                         <span>
                             <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -19,19 +19,17 @@
                 </div>
                 <div class="card-body">
                     <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Options</th>
-                            </tr>
-                        </thead>
                         <tbody>
-
+                            <tr>
+                                <th scope="col">Name</th>
+                                <td scope="col">{{$user->name}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Email</th>
+                                <td scope="col">{{$user->email}}</td>
+                            </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>
             <!-- Add New Modal -->

@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <span>
-                            {{ __('Blog') }}
+                            {{ __('Users') }}
                         </span>
                         <span>
                             <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -28,10 +28,24 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($roles as $role)
+                            <tr>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td><a href="{{route('role.show',$role->id)}}">{{$role->name}}</a></td>
+                                <td>
+                                    @foreach($role->permissions as $role_permission)
+                                    <small>
+                                        {{Str::ucfirst($role_permission->name)}} |
+                                    </small>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <x-button.options :model="$role" :title="$role->name" url="role" />
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
             <!-- Add New Modal -->

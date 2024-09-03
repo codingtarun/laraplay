@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <span>
-                            {{ __('Blog') }}
+                            {{ __('Users') }}
                         </span>
                         <span>
                             <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -28,10 +28,19 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($users as $user)
+                            <tr>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td><a href="{{route('user.show',$user->id)}}">{{$user->name}}</a></td>
+                                <td>{{$user->email}}</td>
+                                <td>
+                                    <x-button.options :model="$user" :title="$user->name" url="user" />
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
-
+                    {{$users->links()}}
                 </div>
             </div>
             <!-- Add New Modal -->
