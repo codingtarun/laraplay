@@ -31,7 +31,11 @@
                             @foreach($users as $user)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td><a href="{{route('user.show',$user->id)}}">{{$user->name}}</a></td>
+                                <td><a href="{{route('user.show',$user->id)}}">{{$user->name}}</a><br>
+                                    @foreach($user->getRoleNames() as $role)
+                                    <small>{{$role}}</small>
+                                    @endforeach
+                                </td>
                                 <td>{{$user->email}}</td>
                                 <td>
                                     <x-button.options :model="$user" :title="$user->name" url="user" />
