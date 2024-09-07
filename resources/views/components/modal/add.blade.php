@@ -7,25 +7,11 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="mb-3">
-                        <label for="inputName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="inputName" aria-describedby="inputNameHelp">
-                        <div id="inputNameHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" aria-describedby="inputEmailHelp">
-                        <div id="inputEmailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputPassword">
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="inputCheckbox">
-                        <label class="form-check-label" for="inputCheckbox">Ask user to reset password in next login</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <x-form.input-text name="name" />
+                    <x-form.input-email name="email" />
+                    <x-form.input-password name="password" />
+                    <x-form.input-checkbox name="reset" />
+                    <x-form.button-submit />
                 </form>
             </div>
         </div>
