@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card rounded-0">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
@@ -11,9 +11,14 @@
                             {{ __('Users') }}
                         </span>
                         <span>
-                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-solid fa-plus"></i> Add
-                            </button>
+                            <div class="btn-group btn-sm">
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                </button>
+                            </div>
                         </span>
                     </div>
                 </div>
@@ -31,7 +36,11 @@
                             @foreach($users as $user)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td><a href="{{route('user.show',$user->id)}}">{{$user->name}}</a></td>
+                                <td><a href="{{route('user.show',$user->id)}}">{{$user->name}}</a><br>
+                                    @foreach($user->getRoleNames() as $role)
+                                    <small>{{$role}}</small>
+                                    @endforeach
+                                </td>
                                 <td>{{$user->email}}</td>
                                 <td>
                                     <x-button.options :model="$user" :title="$user->name" url="user" />
@@ -45,6 +54,8 @@
             </div>
             <!-- Add New Modal -->
             <x-modal.add />
+            <!-- Search Modal-->
+            <x-modal.search modal="User" />
         </div>
     </div>
 </div>

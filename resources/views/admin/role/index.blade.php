@@ -3,17 +3,23 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card rounded-0">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <span>
-                            {{ __('Users') }}
+                            {{ __('Roles & Permissions') }}
                         </span>
                         <span>
-                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-solid fa-plus"></i> Add
-                            </button>
+                            <div class="btn-group btn-sm">
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                </button>
+                            </div>
+
                         </span>
                     </div>
                 </div>
@@ -22,8 +28,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Permissions</th>
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
@@ -31,11 +37,14 @@
                             @foreach($roles as $role)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td><a href="{{route('role.show',$role->id)}}">{{$role->name}}</a></td>
+                                <td><a href="{{route('role.show',$role->id)}}">{{Str::ucfirst($role->name)}}</a></td>
                                 <td>
-                                    @foreach($role->permissions as $role_permission)
+                                    @foreach($permissions as $permission)
                                     <small>
-                                        {{Str::ucfirst($role_permission->name)}} |
+                                        <div class="form-check form-switch form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="SwitchCheck_{{$permission->id}}" @if($role->hasPermissionTo($permission->name)) checked @endif>
+                                            <label class="form-check-label" for="SwitchCheck_{{$permission->id}}">{{Str::ucfirst($permission->name)}}</label>
+                                        </div>
                                     </small>
                                     @endforeach
                                 </td>
