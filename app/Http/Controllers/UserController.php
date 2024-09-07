@@ -11,9 +11,17 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(20);
+        $searchUser = $request->input('search');
+        if ($searchUser) {
+            /**
+             * If input field is not empty we'll perform search on out user table
+             */
+            $users = User::where('name', 'like', '%' . $searchUser . '%')->orWhere('email', 'like', '%' . $searchUser . '%')->paginate();
+        } else {
+            $users = User::paginate(20);
+        }
         return view('admin.user.index', compact('users'));
     }
 

@@ -11,9 +11,15 @@
                             {{ __('Roles & Permissions') }}
                         </span>
                         <span>
-                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-solid fa-plus"></i> Add
-                            </button>
+                            <div class="btn-group btn-sm">
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                </button>
+                            </div>
+
                         </span>
                     </div>
                 </div>
