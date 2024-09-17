@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
      * User Routes
      */
     Route::resource('user', UserController::class);
+    Route::get('user/search/autocomplete', [UserController::class, 'autocomplete'])->name('user.autocomplete');
     /**
      * Blog Routes
      */

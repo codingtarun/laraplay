@@ -73,6 +73,23 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect(route('user.index'))->with('success', 'User ' . $user->name . ' moved to <a href="' . route('user.index') . '"> trash </a>.');
+        return redirect(route('user.index'))->with('danger', 'User ' . $user->name . ' moved to <a href="' . route('user.index') . '"> trash </a>.');
+    }
+    /**
+     * Search Database for $request and return as JSON.
+     */
+    public function autocomplete(Request $request)
+    {
+        $usersList = User::where('name', 'like', '%' . $request->search . '%')->orWhere('email', 'like', '%' . $request->search . '%')->get();
+        $data = '<div class="list-group">';
+        if (count($usersList) > 0) {
+            foreach ($usersList as $row) {
+                $data .= '<a href="#" class="list-group-item list-group-item-action auto-suggest-list">' . $row->name . '</a>';
+            }
+        } else {
+            $data .= '<a href="#" class="list-group-item list-group-item-action active" aria-current="true">No data found</a>';
+        }
+        $data .= '</div>';
+        return $data;
     }
 }
