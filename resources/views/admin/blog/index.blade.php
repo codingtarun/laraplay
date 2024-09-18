@@ -11,9 +11,9 @@
                             {{ __('Blog') }}
                         </span>
                         <span>
-                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a href="{{route('blog.create')}}" class="btn btn-sm btn-outline-primary">
                                 <i class="fa-solid fa-plus"></i> Add
-                            </button>
+                            </a>
                         </span>
                     </div>
                 </div>
@@ -22,13 +22,20 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Author</th>
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($blogs as $blog)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$blog->title}}</td>
+                                <td>{{$blog->user->name}}</td>
+                                <td>Options</td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
 

@@ -37,6 +37,6 @@ class CreateUser extends Command
         ]);
         $user->assignRole('user');
 
-        $this->info('Successfully create ' . $name);
+        $this->info('Successfully created ' . $name);
     }
 }
