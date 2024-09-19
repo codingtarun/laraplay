@@ -11,9 +11,14 @@
                             {{ __('Blog') }}
                         </span>
                         <span>
-                            <a href="{{route('blog.create')}}" class="btn btn-sm btn-outline-primary">
-                                <i class="fa-solid fa-plus"></i> Add
-                            </a>
+                            <div class="btn-group btn-sm">
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <a href="{{route('user.create')}}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                </a>
+                            </div>
                         </span>
                     </div>
                 </div>
@@ -22,8 +27,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Author</th>
+                                <th scope="col">Details</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
@@ -31,9 +36,19 @@
                             @foreach($blogs as $blog)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$blog->title}}</td>
-                                <td>{{$blog->user->name}}</td>
-                                <td>Options</td>
+                                <td>
+                                    <a href="{{route('blog.show',$blog)}}" class="text-reset">{{$blog->title}}</a>
+                                    <br>
+                                    @foreach($blog->categories as $category)
+                                    <a href="#" class="badge text-reset text-wrap fs-8 fw-light p-0">{{$category->title}} </a>
+                                    @endforeach
+                                    <br>
+                                    <span class="fs-8">Author: {{$blog->user->name}}</span>
+                                </td>
+                                <td>
+                                    <x-button.status-switch :model="$blog" />
+                                </td>
+                                <td><x-button.options :model="$blog" :title="$blog->title" url="blog" /></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -41,8 +56,8 @@
 
                 </div>
             </div>
-            <!-- Add New Modal -->
-            <x-modal.add />
+            <!-- Search Modal -->
+            <x-modal.search modal="Blog" />
         </div>
     </div>
 </div>

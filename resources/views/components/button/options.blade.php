@@ -34,7 +34,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure to move <span class="fst-italic">{{$title}}</span> to trash ? {{$model->id}}
+                Are you sure to move <span class="fst-italic">{{$title}}</span> to trash ?
             </div>
             <div class="modal-footer">
                 <form action="{{route('user.destroy',$model->id)}}" method="post">

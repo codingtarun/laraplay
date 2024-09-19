@@ -31,4 +31,14 @@ $(document).ready(function () {
             $("#searchHelp").text("Search Item").css("color", "");
         }
     });
+
+    /**
+     * Model Status Switch Script
+     */
+    $(".status-switch").on("click", function () {
+        var isChecked = $(this).is(":checked"); // get status
+        var id = $(this).data("model-id"); // get the ID of the model
+        var currentStatus = $(this).siblings(".status-label"); // get the current status
+        currentStatus.text(isChecked ? "Published" : "Draft");
+    });
 });

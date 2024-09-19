@@ -25,6 +25,7 @@ class BlogFactory extends Factory
             'excrept' => $this->faker->sentence,
             'body' => $this->faker->paragraph,
             'user_id' => \App\Models\User::factory(),
+            'status' => rand(0, 1) ? 'Published' : 'Draft',
             'published_at' => $this->faker->dateTimeBetween('-1 year', '+1 year'),
         ];
     }

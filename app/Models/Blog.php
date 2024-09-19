@@ -10,7 +10,9 @@ class Blog extends Model
 {
     use HasFactory, SoftDeletes;
 
-
+    /**
+     * Eloquent Relationships
+     */
     public function categories()
     {
         return $this->belongsToMany(Category::class);
@@ -18,5 +20,13 @@ class Blog extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Getter & Setter
+     */
+    public function getStatusSwitchAttribute()
+    {
+        return $this->status === 'Published' ? "checked" : "";
     }
 }

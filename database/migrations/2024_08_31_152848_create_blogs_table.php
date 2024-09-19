@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('body');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('published_at')->nullable();
+            $table->enum('status', ['Draft', 'Published']);
             $table->softDeletes();
             $table->timestamps();
         });
