@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
      * Blog Routes
      */
     Route::resource('blog', BlogController::class);
+    Route::get('blog/switch/status', [BlogController::class, 'switchStatus'])->name('blog.switchStatus');
     /**
      * Category Routes
      */

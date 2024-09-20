@@ -37,8 +37,27 @@ $(document).ready(function () {
      */
     $(".status-switch").on("click", function () {
         var isChecked = $(this).is(":checked"); // get status
-        var id = $(this).data("model-id"); // get the ID of the model
+        var modelId = $(this).data("model-id"); // get the ID of the model
         var currentStatus = $(this).siblings(".status-label"); // get the current status
         currentStatus.text(isChecked ? "Published" : "Draft");
+        /**
+         * Ajax Script to update the model status
+         */
+        $.ajax({
+            url: "blog/switch/status",
+            type: "GET",
+            data: {
+                id: modelId,
+            },
+            beforeSend: function (jqXHR, settings) {
+                console.log("Perform some actions before sending the data");
+            },
+            success: function (data) {
+                console.log(data["msg"]);
+            },
+            error: function (xhr) {
+                alert("SOME ERROR");
+            },
+        });
     });
 });

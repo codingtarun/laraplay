@@ -63,4 +63,31 @@ class BlogController extends Controller
     {
         //
     }
+
+    /**
+     * Switch the status of the blog
+     */
+    public function switchStatus(Request $request)
+    {
+        $id = $request->id;
+        $blog = Blog::find($id);
+
+        if (!$blog) {
+            return response()->json([
+                'status' => 0,
+                'msg' => 'Blog not found',
+            ], 404);
+        } else {
+            if ($blog->status === 'Draft') {
+                $blog->status = 'Published';
+            } else {
+                $blog->status = 'Draft';
+            }
+            $blog->save();
+            return response()->json([
+                'status' => 1,
+                'msg' => "Blog status updated",
+            ]);
+        }
+    }
 }
