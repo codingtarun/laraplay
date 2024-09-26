@@ -22,6 +22,7 @@ class CategoryFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
+            'status' => rand(0, 1) ? 'Published' : 'Draft',
         ];
     }
 }
