@@ -18,4 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**
+ * Users API routes
+ */
+
+// Get all users
 Route::get('/users/all', [UserController::class, 'index']);
+// Get random users
+Route::get('/users/random', [UserController::class, 'getRandomUsers']);

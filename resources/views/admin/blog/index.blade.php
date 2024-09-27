@@ -46,7 +46,7 @@
                                     <span class="fs-8">Author: {{$blog->user->name}}</span>
                                 </td>
                                 <td>
-                                    <x-button.status-switch :model="$blog" />
+                                    <x-button.status-switch :model="$blog" url="blog/switch/status" />
                                 </td>
                                 <td><x-button.options :model="$blog" :title="$blog->title" url="blog" /></td>
                             </tr>

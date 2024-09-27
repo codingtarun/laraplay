@@ -44,7 +44,10 @@ Route::middleware(['auth'])->group(function () {
      * Category Routes
      */
     Route::resource('category', CategoryController::class);
-
+    Route::get('category/trash/view', [CategoryController::class, 'trash'])->name('category.trash');
+    Route::post('category/{slug}/restore', [CategoryController::class, 'restore'])->name('category.restore');
+    Route::delete('category/{slug}/force/delete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
+    Route::get('category/switch/status', [CategoryController::class, 'switchStatus'])->name('category.switchStatus');
     /**
      * Settings Routes 
      * Roles & Permissions Routes

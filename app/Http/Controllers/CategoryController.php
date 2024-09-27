@@ -40,7 +40,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.category.view', compact('category'));
     }
 
     /**
@@ -58,7 +58,7 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         $category->update($data);
-        return redirect()->back()->with('success', 'Category Updated');
+        return redirect(route('category.index'))->with('success', 'Category Updated');
     }
 
     /**
@@ -66,6 +66,62 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect(route('category.index'))->with('danger', 'Category moved to trash');
+    }
+
+    /**
+     * Return trashed resources 
+     */
+    public function trash()
+    {
+        $trashedCategories = Category::onlyTrashed()->get();
+        return view('admin.category.trash', compact('trashedCategories'));
+    }
+    /**
+     * Restore the resource
+     */
+
+    public function restore($slug)
+    {
+        $category = Category::withTrashed()->where('slug', $slug)->firstOrFail();
+        $category->restore();
+        return redirect(route('category.trash'))->with('primary', 'Category restored');
+    }
+    /**
+     * Permanently delete resource
+     */
+
+    public function forceDelete($slug)
+    {
+        $category = Category::withTrashed()->where('slug', $slug)->firstOrFail();
+        $category->forceDelete();
+        return redirect(route('category.trash'))->with('danger', 'Category deleted permanently');
+    }
+    /**
+     * Switch the status of the blog
+     */
+    public function switchStatus(Request $request)
+    {
+        $id = $request->id;
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json([
+                'status' => 0,
+                'msg' => 'Blog not found',
+            ], 404);
+        } else {
+            if ($category->status === 'Draft') {
+                $category->status = 'Published';
+            } else {
+                $category->status = 'Draft';
+            }
+            $category->save();
+            return response()->json([
+                'status' => 1,
+                'msg' => "Blog status updated",
+            ]);
+        }
     }
 }

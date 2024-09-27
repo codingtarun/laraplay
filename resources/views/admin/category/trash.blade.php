@@ -12,14 +12,8 @@
                         </span>
                         <span>
                             <div class="btn-group btn-sm">
-                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
-                                <a href="{{route('category.create')}}" class="btn btn-sm btn-outline-primary">
-                                    <i class="fa-solid fa-plus"></i> Add
-                                </a>
-                                <a href="{{route('category.trash')}}" class="btn btn-sm btn-outline-primary">
-                                    <i class="fa-solid fa-trash-can"></i> Trash
+                                <a href="{{route('category.index')}}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-list"></i> View All
                                 </a>
                             </div>
                         </span>
@@ -31,22 +25,17 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Details</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $category)
+                            @foreach($trashedCategories as $category)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>
-                                    <a href="{{route('category.show',$category)}}">{{Str::ucfirst($category->title)}}</a><br>
-                                    <p class="small">This category has <a href="#">{{$category->blogs->count()}} posts</a>
+                                    {{Str::ucfirst($category->title)}}
                                 </td>
-                                <td>
-                                    <x-button.status-switch :model="$category" url="category/switch/status" />
-                                </td>
-                                <td><x-button.options :model="$category" :title="$category->title" url="category" /></td>
+                                <td><x-button.trash-options :model="$category" :title="$category->title" url="category" /></td>
                             </tr>
                             @endforeach
                         </tbody>

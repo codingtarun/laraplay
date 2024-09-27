@@ -1,18 +1,21 @@
 <?php
 
-namespace App\View\Components\button;
+namespace App\View\Components\Button;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class StatusSwitch extends Component
+class TrashOptions extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public $model, public $url)
-    {
+    public function __construct(
+        public $title,
+        public $url,
+        public $model
+    ) {
         //
     }
 
@@ -21,6 +24,6 @@ class StatusSwitch extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.button.status-switch');
+        return view('components.button.trash-options');
     }
 }

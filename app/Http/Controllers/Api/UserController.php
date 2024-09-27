@@ -75,4 +75,23 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * Return random users
+     */
+    public function getRandomUsers()
+    {
+        try {
+            $users = User::inRandomOrder()->take(10)->get();
+            return response()->json([
+                'status' => true,
+                'users' => UserResource::collection($users)
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
 }

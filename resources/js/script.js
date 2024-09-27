@@ -39,18 +39,22 @@ $(document).ready(function () {
         var isChecked = $(this).is(":checked"); // get status
         var modelId = $(this).data("model-id"); // get the ID of the model
         var currentStatus = $(this).siblings(".status-label"); // get the current status
+        var switchUrl = $(this)
+            .siblings("input[name='switch-status-url']")
+            .val(); // get the value of the hidden input
         currentStatus.text(isChecked ? "Published" : "Draft");
         /**
          * Ajax Script to update the model status
          */
         $.ajax({
-            url: "blog/switch/status",
+            url: switchUrl,
             type: "GET",
             data: {
                 id: modelId,
             },
             beforeSend: function (jqXHR, settings) {
                 console.log("Perform some actions before sending the data");
+                console.log(switchUrl);
             },
             success: function (data) {
                 console.log(data["msg"]);

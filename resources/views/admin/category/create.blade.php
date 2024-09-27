@@ -11,9 +11,11 @@
                             {{ __('Category') }}
                         </span>
                         <span>
-                            <a href="{{route('category.index')}}" class="btn btn-sm btn-outline-primary">
-                                <i class="fa-solid fa-eye"></i> View All
-                            </a>
+                            <div class="btn-group btn-sm">
+                                <a href="{{route('category.index')}}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-list"></i> View All
+                                </a>
+                            </div>
                         </span>
                     </div>
                 </div>
@@ -23,7 +25,7 @@
                         <div class="mb-3 row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Title</label>
                             <div class="col-sm-10">
-                                <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{old('name')}}">
+                                <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{old('title')}}">
                                 @error('title')
                                 <div class="invalid-feedback">
                                     {{$message}}

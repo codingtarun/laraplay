@@ -40,7 +40,7 @@
                 Are you sure to move <span class="fst-italic">{{$title}}</span> to trash ?
             </div>
             <div class="modal-footer">
-                <form action="{{route('user.destroy',$model->id)}}" method="post">
+                <form action="{{route($url.'.destroy',$model)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
