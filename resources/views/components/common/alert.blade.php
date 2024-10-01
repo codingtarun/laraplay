@@ -1,6 +1,6 @@
 <div id="alerts" class="animate__animated animate__bounceInRight">
     @if(session('danger'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="danger">
         {!! session('danger') !!}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -29,4 +29,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+</div>
+
+<!--Status Switch alerts -->
+<div id="status-alerts" class="animate__animated animate__bounceInRight">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="danger">
+        Status updated
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 </div>

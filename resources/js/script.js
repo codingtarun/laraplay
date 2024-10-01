@@ -1,5 +1,10 @@
 $(document).ready(function () {
     /**
+     * Hide Status Alerts initially /
+     */
+
+    $("#status-alerts").hide();
+    /**
      * Alerts Script
      */
     setTimeout(function () {
@@ -7,7 +12,6 @@ $(document).ready(function () {
             .removeClass("animate__bounceInRight")
             .addClass("animate__bounceOutRight");
     }, 5000);
-
     /**
      * Search Modal Scripts.
      * Check for empty input field before submit.
@@ -53,11 +57,11 @@ $(document).ready(function () {
                 id: modelId,
             },
             beforeSend: function (jqXHR, settings) {
-                console.log("Perform some actions before sending the data");
-                console.log(switchUrl);
+                console.log("Before Send");
             },
             success: function (data) {
                 console.log(data["msg"]);
+                $("#status-alerts").show();
             },
             error: function (xhr) {
                 alert("SOME ERROR");

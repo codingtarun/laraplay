@@ -109,7 +109,7 @@ class CategoryController extends Controller
         if (!$category) {
             return response()->json([
                 'status' => 0,
-                'msg' => 'Blog not found',
+                'msg' => 'Category not found',
             ], 404);
         } else {
             if ($category->status === 'Draft') {
@@ -120,7 +120,7 @@ class CategoryController extends Controller
             $category->save();
             return response()->json([
                 'status' => 1,
-                'msg' => "Blog status updated",
+                'msg' => "Category status updated",
             ]);
         }
     }
