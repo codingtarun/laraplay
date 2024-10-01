@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -21,7 +22,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.blog.create');
+        $categories = Category::all();
+        return view('admin.blog.create', compact('categories'));
     }
 
     /**
@@ -29,7 +31,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

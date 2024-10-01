@@ -15,7 +15,7 @@
                                 <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
-                                <a href="{{route('user.create')}}" class="btn btn-sm btn-outline-primary">
+                                <a href="{{route('blog.create')}}" class="btn btn-sm btn-outline-primary">
                                     <i class="fa-solid fa-plus"></i> Add
                                 </a>
                             </div>

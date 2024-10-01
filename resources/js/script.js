@@ -1,5 +1,20 @@
 $(document).ready(function () {
     /**
+     *  Summernote Initialization
+     */
+    $(document).ready(function () {
+        $("#txtBody").summernote({
+            height: 300,
+        });
+    });
+
+    /**
+     * Select2 Initialization
+     */
+
+    $("#categories").select2();
+
+    /**
      * Hide Status Alerts initially /
      */
 
@@ -61,6 +76,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data["msg"]);
+
                 $("#status-alerts").show();
             },
             error: function (xhr) {
