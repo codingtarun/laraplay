@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-    <form action="{{route('blog.store')}}" method="post">
+    <form action="{{route('blog.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -13,11 +13,11 @@
                             <span>
                                 {{ __('Blog') }}
                             </span>
-                            <span>
+                            <!-- <span>
                                 <a href="{{route('blog.index')}}" class="btn btn-sm btn-outline-primary">
                                     <i class="fa-solid fa-eye"></i> View All
                                 </a>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -45,10 +45,10 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="excrept" class="col-sm-2 col-form-label">Excrept</label>
+                            <label for="excerpt" class="col-sm-2 col-form-label">Excerpt</label>
                             <div class="col-sm-10">
-                                <textarea name="excrept" id="excrept" class="form-control @error('excrept') is-invalid @enderror">{{old('excrept')}}</textarea>
-                                @error('excrept')
+                                <textarea name="excerpt" id="excerpt" class="form-control @error('excerpt') is-invalid @enderror">{{old('excerpt')}}</textarea>
+                                @error('excerpt')
                                 <div class="invalid-feedback">
                                     {{$message}}
                                 </div>
@@ -58,7 +58,7 @@
                         <div class="mb-3 row">
                             <label for="body" class="col-sm-2 col-form-label">Body</label>
                             <div class="col-sm-10">
-                                <textarea name="boby" id="txtBody" class="form-control @error('body') is-invalid @enderror">{{old('body')}}</textarea>
+                                <textarea name="body" id="txtBody" class="form-control @error('body') is-invalid @enderror">{{old('body')}}</textarea>
                                 @error('body')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -87,14 +87,14 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3 row">
-                            <label for="category" class="col-sm-3 col-form-label">Category</label>
+                            <label for="categories" class="col-sm-3 col-form-label">Category</label>
                             <div class="col-sm-9">
-                                <select class="form-select @error('status') is-invalid @enderror" name="categories[]" id="categories" aria-label="Default select example" multiple>
+                                <select class="form-select @error('categories') is-invalid @enderror" name="categories[]" id="categories" aria-label="Default select example" multiple>
                                     @foreach($categories as $category)
-                                    <option value="{{$category->title}}">{{$category->title}}</option>
+                                    <option value="{{$category->id}}">{{$category->title}}</option>
                                     @endforeach
                                 </select>
-                                @error('status')
+                                @error('categories')
                                 <div class="invalid-feedback">
                                     {{$message}}
                                 </div>
@@ -117,10 +117,21 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="image" class="col-sm-3 col-form-label">Image</label>
+                            <label for="published_at" class="col-sm-3 col-form-label">Publish Date</label>
                             <div class="col-sm-9">
-                                <input type="file" class="form-select @error('image') is-invalid @enderror" name="images[]" id="images" aria-label="Default select example" multiple>
-                                @error('status')
+                                <input type="datetime-local" name="published_at" class="form-control @error('published_at') is-invalid @enderror" id="">
+                                @error('published_at')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="images" class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9">
+                                <input type="file" class="form-select @error('images') is-invalid @enderror" name="images[]" id="images" multiple>
+                                @error('images')
                                 <div class="invalid-feedback">
                                     {{$message}}
                                 </div>

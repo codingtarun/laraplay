@@ -22,7 +22,7 @@ class BlogFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'excrept' => $this->faker->sentence,
+            'excerpt' => $this->faker->sentence,
             'body' => $this->faker->paragraph,
             'user_id' => \App\Models\User::factory(),
             'status' => rand(0, 1) ? 'Published' : 'Draft',

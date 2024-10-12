@@ -84,4 +84,14 @@ $(document).ready(function () {
             },
         });
     });
+
+    /**
+     * Generate 'slug' from 'title'
+     */
+
+    $("#title").on("keyup", function () {
+        let titleValue = $(this).val();
+        let slugValue = titleValue.replace(/\s+/g, "-");
+        $("#slug").val(slugValue);
+    });
 });

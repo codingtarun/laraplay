@@ -11,6 +11,21 @@ class Blog extends Model
     use HasFactory, SoftDeletes;
 
     /**
+     * Fillables
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+        'excerpt',
+        'body',
+        'published_at',
+        'status',
+        'user_id',
+    ];
+
+
+
+    /**
      * Eloquent Relationships
      */
     public function categories()
@@ -21,7 +36,10 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
     /**
      * Getter & Setter
      */

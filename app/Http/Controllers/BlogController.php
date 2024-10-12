@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BlogRequest;
+use App\Http\Traits\HandleImage;
+use Illuminate\Support\Str;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Image as Img;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\Laravel\Facades\Image;
 
 class BlogController extends Controller
 {
+    use HandleImage;
     /**
      * Display a listing of the resource.
      */
@@ -29,9 +37,34 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
-        return $request;
+        // Get validated data
+        $data = $request->validated();
+
+        // Add logged in user ID i.e author of the post
+        $data['user_id'] = Auth::id();
+        // Store the blog
+        DB::beginTransaction();
+        $blog = Blog::create($data);
+        // Attach Categories to blog
+        $blog->categories()->attach($data['categories']);
+        // Check if 'images' exits
+        if (array_key_exists('images', $data)) {
+            // Loop over each image and upload one by one
+            foreach ($request->file('images') as $image) {
+                $imageName = $this->upload($image);
+                // after image is uplaoded store image title to image table and store image ID in array
+                $image = Img::create([
+                    'title' => $imageName,
+                ]);
+                $blog->images()->attach($image->id);
+            }
+        }
+        DB::commit();
+        // dd($images);
+        // Return to blog index page with success message
+        return redirect()->back()->with('success', 'New blog added');
     }
 
     /**

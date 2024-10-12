@@ -9,4 +9,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Image extends Model
 {
     use HasFactory, SoftDeletes;
+
+    /**
+     * Fillables
+     */
+    protected $fillable = ['title'];
+
+    /**
+     * Eloquent Relationship
+     */
+
+    public function blogs()
+    {
+        return $this->belongsToMany(Blog::class);
+    }
 }
