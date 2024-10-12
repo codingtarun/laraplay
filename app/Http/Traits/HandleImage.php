@@ -9,15 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 trait HandleImage
 {
+    public $imageManager;
+
+    public function __construct()
+    {
+        $this->imageManager = new ImageManager(new Driver());;
+    }
     public function upload($image)
     {
-        $manager = new ImageManager(new Driver());
-
+        // create object of 
         $imageName = time() . '-' . $image->getClientOriginalName();
         $imageName600 = time() . '-600-' . $image->getClientOriginalName();
         $imageName400 = time() . '-400-' . $image->getClientOriginalName();
         $imageDestination = 'storage/images/';
-        $img = $manager->read($image);
+
+        //Read the uplaoded file from temp folder
+        $img = $this->imageManager->read($image);
         $img->save($imageDestination . $imageName, 100);
         $img->resize(height: 600)->save($imageDestination . $imageName600, 100);
         $img->resize(height: 400)->save($imageDestination . $imageName400, 100);

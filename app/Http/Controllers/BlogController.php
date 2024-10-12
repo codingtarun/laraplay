@@ -41,7 +41,6 @@ class BlogController extends Controller
     {
         // Get validated data
         $data = $request->validated();
-
         // Add logged in user ID i.e author of the post
         $data['user_id'] = Auth::id();
         // Store the blog
@@ -62,7 +61,6 @@ class BlogController extends Controller
             }
         }
         DB::commit();
-        // dd($images);
         // Return to blog index page with success message
         return redirect()->back()->with('success', 'New blog added');
     }
