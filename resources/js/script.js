@@ -94,4 +94,10 @@ $(document).ready(function () {
         let slugValue = titleValue.replace(/\s+/g, "-");
         $("#slug").val(slugValue);
     });
+
+    /**
+     * Owl Carousel Initialize
+     */
+
+    $(".owl-carousel").owlCarousel();
 });

@@ -27,7 +27,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Details</th>
+                                <th scope="col" width="60%">Details</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Options</th>
                             </tr>
@@ -37,7 +37,7 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>
-                                    <a href="{{route('blog.show',$blog)}}" class="text-reset">{{$blog->title}}</a>
+                                    {{$blog->title}}
                                     <br>
                                     @foreach($blog->categories as $category)
                                     <a href="#" class="badge text-reset text-wrap fs-8 fw-light p-0">{{$category->title}} </a>
