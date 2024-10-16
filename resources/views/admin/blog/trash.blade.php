@@ -31,7 +31,6 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col" width="60%">Details</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
@@ -42,16 +41,14 @@
                                 <td>
                                     {{$blog->title}}
                                     <br>
+                                    {{$blog->slug}}<br>
                                     @foreach($blog->categories as $category)
                                     <a href="#" class="badge text-reset text-wrap fs-8 fw-light p-0">{{$category->title}} </a>
                                     @endforeach
                                     <br>
                                     <span class="fs-8">Author: {{$blog->user->name}}</span>
                                 </td>
-                                <td>
-                                    <x-button.status-switch :model="$blog" url="blog/switch/status" />
-                                </td>
-                                <td><x-button.options :model="$blog" :title="$blog->title" url="blog" /></td>
+                                <td><x-button.trash-options :model="$blog" :title="$blog->title" url="blog" /></td>
                             </tr>
                             @endforeach
                         </tbody>

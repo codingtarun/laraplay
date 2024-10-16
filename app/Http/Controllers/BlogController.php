@@ -95,7 +95,29 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+        return redirect(route('blog.index'))->with('danger', 'Blog post moved to Trash');
+    }
+
+    /**
+     * Returns Trashed blogs
+     */
+
+
+    public function trash()
+    {
+        $blogs = Blog::onlyTrashed()->get();
+        return view('admin.blog.trash', compact('blogs'));
+    }
+
+    /**
+     * Restore the blog
+     */
+    public function restore($id)
+    {
+        $blog = Blog::onlyTrashed()->findOrFail($id);
+        $blog->restore();
+        return redirect(route('blog.trash'))->with('success', 'Blog post restored successfully');
     }
 
     /**

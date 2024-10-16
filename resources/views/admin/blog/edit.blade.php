@@ -140,7 +140,7 @@
                             <div class="owl-carousel owl-theme blog-thumbnail">
                                 @foreach($blog->images as $image)
                                 <div class="blog-thumbnail__box">
-                                    <img src="{{asset('/storage/images/'.$image->title)}}" class="blog-thumbnail__box-img" alt="Blog Image Thumbnail">
+                                    <img src="{{asset('/storage/images/'.$image->title)}}" class="blog-thumbnail__box-img img-fluid" alt="Blog Image Thumbnail">
                                     <a href="" class="blog-thumbnail__box-button"><i class="fa-solid fa-xmark"></i></a>
                                 </div>
                                 @endforeach

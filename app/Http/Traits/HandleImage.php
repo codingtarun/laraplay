@@ -13,21 +13,29 @@ trait HandleImage
 
     public function __construct()
     {
+        // Initialiing Image Manager
         $this->imageManager = new ImageManager(new Driver());;
     }
     public function upload($image)
     {
-        // create object of 
-        $imageName = time() . '-' . $image->getClientOriginalName();
-        $imageName600 = time() . '-600-' . $image->getClientOriginalName();
-        $imageName400 = time() . '-400-' . $image->getClientOriginalName();
+        // Get image initial name 
+        $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+        $imageExtension = $image->getClientOriginalExtension();
+
+        // Creating file name with 'size' suffix
+        $imageName32 = $imageName . '-32x32.' . $imageExtension;
+        $imageName150 = $imageName . '-150x150.' . $imageExtension;
+        $imageName1024 = $imageName . '-1024x1024.' . $imageExtension;
+
         $imageDestination = 'storage/images/';
 
         //Read the uplaoded file from temp folder
+
         $img = $this->imageManager->read($image);
-        $img->save($imageDestination . $imageName, 100);
-        $img->resize(height: 600)->save($imageDestination . $imageName600, 100);
-        $img->resize(height: 400)->save($imageDestination . $imageName400, 100);
-        return $imageName;
+        $img->save($imageDestination . $imageName);
+        $img->scaleDown(height: 32)->save($imageDestination . $imageName32);
+        $img->scaleDown(height: 150)->save($imageDestination . $imageName150);
+        $img->scaleDown(height: 1024)->save($imageDestination . $imageName1024);
+        return $imageName1024;
     }
 }

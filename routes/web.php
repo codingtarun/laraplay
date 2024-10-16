@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
      */
     Route::resource('blog', BlogController::class);
     Route::get('blog/switch/status', [BlogController::class, 'switchStatus'])->name('blog.switchStatus');
+    Route::get('blog/trash/view', [BlogController::class, 'trash'])->name('blog.trash');
+    Route::post('blog/{slug}/restore', [BlogController::class, 'restore'])->name('blog.restore');
+    Route::delete('blog/{slug}/force/delete', [BlogController::class, 'forceDelete'])->name('blog.forceDelete');
     /**
      * Category Routes
      */
